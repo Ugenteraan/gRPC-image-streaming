@@ -8,7 +8,7 @@ Streaming large image files through gRPC one row at a time. The image is reconst
 
 ## Server
 
-To test this project, run :
+To test this project, run these two commands below in two different terminals.
 
 ```bash
   python server_grpc.py
@@ -16,7 +16,7 @@ To test this project, run :
 
 ## Client
 ```bash
-    python client_grpc.py
+  python client_grpc.py
 ```
 
 
