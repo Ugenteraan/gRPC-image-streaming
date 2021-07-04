@@ -8,11 +8,20 @@ import stream_pb2, stream_pb2_grpc
 class StreamImage(stream_pb2_grpc.StreamImageServicer):
 
     def imageStreaming(self, image_iterator, context):
-
+        
+        rows = []
         for data in image_iterator:
-            print(image_iterator) 
+            row = np.array(list(data.image), dtype=np.uint8)
+            print(row.shape)
+            index = int(row.shape[0]/3)
+            row = np.reshape(row, (index,3))
+            rows.append(row)
+        image = np.asarray(rows, dtype=np.uint8)
+        cv2.imshow('img', image)
+        cv2.waitKey(0)
 
-        return 2
+
+        return stream_pb2.imgResponse(response=2)
 
 
 def serve():

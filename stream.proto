@@ -8,7 +8,7 @@ message imgReq {
 	bytes image = 1;
 }
 
-message imgResponse{
+message imgResponse {
 	int32 response = 1;
 }
 
