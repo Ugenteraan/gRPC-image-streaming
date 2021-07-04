@@ -1,3 +1,6 @@
+'''Client script to send image bytes through gRPC stream.
+'''
+
 import grpc
 import cv2
 import stream_pb2_grpc, stream_pb2
@@ -10,11 +13,11 @@ def client_req(filename='test.jpg'):
     print(response)
 
 def generateImageBytes(fn):
-    '''Yields the images one row at a time for all channels (b,g,r).
+    '''Yields the images one row at a time for all channels (b,g,r). Note that the row is flattened.
     '''
     img = cv2.imread(fn)
     for f in img:
-        data = bytes(f)
+        data = bytes(f) #convert into bytes.
         yield stream_pb2.imgReq(image=data)
 
 if __name__=="__main__":
